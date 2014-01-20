@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFlightTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_flightid}" for="flightid" />
+                    <h:inputText id="flightid" value="#{flightController.selected.flightid}" title="#{bundle.CreateFlightTitle_flightid}" required="true" requiredMessage="#{bundle.CreateFlightRequiredMessage_flightid}"/>
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_direction}" for="direction" />
+                    <h:inputText id="direction" value="#{flightController.selected.direction}" title="#{bundle.CreateFlightTitle_direction}" required="true" requiredMessage="#{bundle.CreateFlightRequiredMessage_direction}"/>
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_flightnum}" for="flightnum" />
+                    <h:inputText id="flightnum" value="#{flightController.selected.flightnum}" title="#{bundle.CreateFlightTitle_flightnum}" />
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_deptime}" for="deptime" />
+                    <h:inputText id="deptime" value="#{flightController.selected.deptime}" title="#{bundle.CreateFlightTitle_deptime}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_depairport}" for="depairport" />
+                    <h:inputText id="depairport" value="#{flightController.selected.depairport}" title="#{bundle.CreateFlightTitle_depairport}" />
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_arrtime}" for="arrtime" />
+                    <h:inputText id="arrtime" value="#{flightController.selected.arrtime}" title="#{bundle.CreateFlightTitle_arrtime}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_arrairport}" for="arrairport" />
+                    <h:inputText id="arrairport" value="#{flightController.selected.arrairport}" title="#{bundle.CreateFlightTitle_arrairport}" />
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_airlinename}" for="airlinename" />
+                    <h:inputText id="airlinename" value="#{flightController.selected.airlinename}" title="#{bundle.CreateFlightTitle_airlinename}" />
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_bookingstatus}" for="bookingstatus" />
+                    <h:inputText id="bookingstatus" value="#{flightController.selected.bookingstatus}" title="#{bundle.CreateFlightTitle_bookingstatus}" />
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_lastupdated}" for="lastupdated" />
+                    <h:inputText id="lastupdated" value="#{flightController.selected.lastupdated}" title="#{bundle.CreateFlightTitle_lastupdated}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFlightLabel_tripid}" for="tripid" />
+                    <h:selectOneMenu id="tripid" value="#{flightController.selected.tripid}" title="#{bundle.CreateFlightTitle_tripid}" required="true" requiredMessage="#{bundle.CreateFlightRequiredMessage_tripid}">
+                        <f:selectItems value="#{tripController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{flightController.create}" value="#{bundle.CreateFlightSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{flightController.prepareList}" value="#{bundle.CreateFlightShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFlightIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

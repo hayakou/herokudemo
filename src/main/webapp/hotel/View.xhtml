@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHotelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHotelLabel_hotelid}"/>
+                    <h:outputText value="#{hotelController.selected.hotelid}" title="#{bundle.ViewHotelTitle_hotelid}"/>
+                    <h:outputText value="#{bundle.ViewHotelLabel_hotelname}"/>
+                    <h:outputText value="#{hotelController.selected.hotelname}" title="#{bundle.ViewHotelTitle_hotelname}"/>
+                    <h:outputText value="#{bundle.ViewHotelLabel_checkindate}"/>
+                    <h:outputText value="#{hotelController.selected.checkindate}" title="#{bundle.ViewHotelTitle_checkindate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHotelLabel_checkoutdate}"/>
+                    <h:outputText value="#{hotelController.selected.checkoutdate}" title="#{bundle.ViewHotelTitle_checkoutdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHotelLabel_guests}"/>
+                    <h:outputText value="#{hotelController.selected.guests}" title="#{bundle.ViewHotelTitle_guests}"/>
+                    <h:outputText value="#{bundle.ViewHotelLabel_bookingstatus}"/>
+                    <h:outputText value="#{hotelController.selected.bookingstatus}" title="#{bundle.ViewHotelTitle_bookingstatus}"/>
+                    <h:outputText value="#{bundle.ViewHotelLabel_lastupdated}"/>
+                    <h:outputText value="#{hotelController.selected.lastupdated}" title="#{bundle.ViewHotelTitle_lastupdated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHotelLabel_tripid}"/>
+                    <h:outputText value="#{hotelController.selected.tripid}" title="#{bundle.ViewHotelTitle_tripid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelController.destroyAndView}" value="#{bundle.ViewHotelDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHotelEditLink}"/>
+                <br />
+                <h:commandLink action="#{hotelController.prepareCreate}" value="#{bundle.ViewHotelCreateLink}" />
+                <br />
+                <h:commandLink action="#{hotelController.prepareList}" value="#{bundle.ViewHotelShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHotelIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

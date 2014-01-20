@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHotelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_hotelid}" for="hotelid" />
+                    <h:inputText id="hotelid" value="#{hotelController.selected.hotelid}" title="#{bundle.CreateHotelTitle_hotelid}" required="true" requiredMessage="#{bundle.CreateHotelRequiredMessage_hotelid}"/>
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_hotelname}" for="hotelname" />
+                    <h:inputText id="hotelname" value="#{hotelController.selected.hotelname}" title="#{bundle.CreateHotelTitle_hotelname}" />
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_checkindate}" for="checkindate" />
+                    <h:inputText id="checkindate" value="#{hotelController.selected.checkindate}" title="#{bundle.CreateHotelTitle_checkindate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_checkoutdate}" for="checkoutdate" />
+                    <h:inputText id="checkoutdate" value="#{hotelController.selected.checkoutdate}" title="#{bundle.CreateHotelTitle_checkoutdate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_guests}" for="guests" />
+                    <h:inputText id="guests" value="#{hotelController.selected.guests}" title="#{bundle.CreateHotelTitle_guests}" />
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_bookingstatus}" for="bookingstatus" />
+                    <h:inputText id="bookingstatus" value="#{hotelController.selected.bookingstatus}" title="#{bundle.CreateHotelTitle_bookingstatus}" />
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_lastupdated}" for="lastupdated" />
+                    <h:inputText id="lastupdated" value="#{hotelController.selected.lastupdated}" title="#{bundle.CreateHotelTitle_lastupdated}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateHotelLabel_tripid}" for="tripid" />
+                    <h:selectOneMenu id="tripid" value="#{hotelController.selected.tripid}" title="#{bundle.CreateHotelTitle_tripid}" required="true" requiredMessage="#{bundle.CreateHotelRequiredMessage_tripid}">
+                        <f:selectItems value="#{tripController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelController.create}" value="#{bundle.CreateHotelSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{hotelController.prepareList}" value="#{bundle.CreateHotelShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHotelIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCarrentalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_carrentalid}" for="carrentalid" />
+                    <h:inputText id="carrentalid" value="#{carrentalController.selected.carrentalid}" title="#{bundle.CreateCarrentalTitle_carrentalid}" required="true" requiredMessage="#{bundle.CreateCarrentalRequiredMessage_carrentalid}"/>
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_provider}" for="provider" />
+                    <h:inputText id="provider" value="#{carrentalController.selected.provider}" title="#{bundle.CreateCarrentalTitle_provider}" />
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{carrentalController.selected.city}" title="#{bundle.CreateCarrentalTitle_city}" />
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_pickupdate}" for="pickupdate" />
+                    <h:inputText id="pickupdate" value="#{carrentalController.selected.pickupdate}" title="#{bundle.CreateCarrentalTitle_pickupdate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_returndate}" for="returndate" />
+                    <h:inputText id="returndate" value="#{carrentalController.selected.returndate}" title="#{bundle.CreateCarrentalTitle_returndate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_cartype}" for="cartype" />
+                    <h:inputText id="cartype" value="#{carrentalController.selected.cartype}" title="#{bundle.CreateCarrentalTitle_cartype}" />
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_rate}" for="rate" />
+                    <h:inputText id="rate" value="#{carrentalController.selected.rate}" title="#{bundle.CreateCarrentalTitle_rate}" />
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_bookingstatus}" for="bookingstatus" />
+                    <h:inputText id="bookingstatus" value="#{carrentalController.selected.bookingstatus}" title="#{bundle.CreateCarrentalTitle_bookingstatus}" />
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_lastupdated}" for="lastupdated" />
+                    <h:inputText id="lastupdated" value="#{carrentalController.selected.lastupdated}" title="#{bundle.CreateCarrentalTitle_lastupdated}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCarrentalLabel_tripid}" for="tripid" />
+                    <h:selectOneMenu id="tripid" value="#{carrentalController.selected.tripid}" title="#{bundle.CreateCarrentalTitle_tripid}" required="true" requiredMessage="#{bundle.CreateCarrentalRequiredMessage_tripid}">
+                        <f:selectItems value="#{tripController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{carrentalController.create}" value="#{bundle.CreateCarrentalSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{carrentalController.prepareList}" value="#{bundle.CreateCarrentalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCarrentalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

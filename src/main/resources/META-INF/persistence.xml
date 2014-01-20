@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.salesforce.atsja_zHerokuDemo_war_1.0PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.salesforce.atsja.zherokudemo.entity.Person</class>
+    <class>com.salesforce.atsja.zherokudemo.entity.Flight</class>
+    <class>com.salesforce.atsja.zherokudemo.entity.Triptype</class>
+    <class>com.salesforce.atsja.zherokudemo.entity.Trip</class>
+    <class>com.salesforce.atsja.zherokudemo.entity.Hotel</class>
+    <class>com.salesforce.atsja.zherokudemo.entity.Carrental</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-54-235-99-46.compute-1.amazonaws.com/dc66gm7mmbdg1m?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+      <property name="javax.persistence.jdbc.password" value="kJFp76XPGIjXUZ1__3XY-LWlQw"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="kgynnzbphspmkn"/>
+    </properties>
+  </persistence-unit>
+</persistence>

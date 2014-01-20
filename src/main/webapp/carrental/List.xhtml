@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCarrentalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCarrentalEmpty}" rendered="#{carrentalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{carrentalController.items.rowCount > 0}">
+                    <h:outputText value="#{carrentalController.pagination.pageFirstItem + 1}..#{carrentalController.pagination.pageLastItem + 1}/#{carrentalController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{carrentalController.previous}" value="#{bundle.Previous} #{carrentalController.pagination.pageSize}" rendered="#{carrentalController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{carrentalController.next}" value="#{bundle.Next} #{carrentalController.pagination.pageSize}" rendered="#{carrentalController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{carrentalController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_carrentalid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.carrentalid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_provider}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.provider}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_city}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.city}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_pickupdate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pickupdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_returndate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.returndate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_cartype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cartype}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_rate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_bookingstatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bookingstatus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_lastupdated}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lastupdated}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrentalTitle_tripid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tripid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{carrentalController.prepareView}" value="#{bundle.ListCarrentalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{carrentalController.prepareEdit}" value="#{bundle.ListCarrentalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{carrentalController.destroy}" value="#{bundle.ListCarrentalDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{carrentalController.prepareCreate}" value="#{bundle.ListCarrentalCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCarrentalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

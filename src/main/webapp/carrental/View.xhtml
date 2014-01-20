@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCarrentalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_carrentalid}"/>
+                    <h:outputText value="#{carrentalController.selected.carrentalid}" title="#{bundle.ViewCarrentalTitle_carrentalid}"/>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_provider}"/>
+                    <h:outputText value="#{carrentalController.selected.provider}" title="#{bundle.ViewCarrentalTitle_provider}"/>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_city}"/>
+                    <h:outputText value="#{carrentalController.selected.city}" title="#{bundle.ViewCarrentalTitle_city}"/>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_pickupdate}"/>
+                    <h:outputText value="#{carrentalController.selected.pickupdate}" title="#{bundle.ViewCarrentalTitle_pickupdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_returndate}"/>
+                    <h:outputText value="#{carrentalController.selected.returndate}" title="#{bundle.ViewCarrentalTitle_returndate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_cartype}"/>
+                    <h:outputText value="#{carrentalController.selected.cartype}" title="#{bundle.ViewCarrentalTitle_cartype}"/>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_rate}"/>
+                    <h:outputText value="#{carrentalController.selected.rate}" title="#{bundle.ViewCarrentalTitle_rate}"/>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_bookingstatus}"/>
+                    <h:outputText value="#{carrentalController.selected.bookingstatus}" title="#{bundle.ViewCarrentalTitle_bookingstatus}"/>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_lastupdated}"/>
+                    <h:outputText value="#{carrentalController.selected.lastupdated}" title="#{bundle.ViewCarrentalTitle_lastupdated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCarrentalLabel_tripid}"/>
+                    <h:outputText value="#{carrentalController.selected.tripid}" title="#{bundle.ViewCarrentalTitle_tripid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{carrentalController.destroyAndView}" value="#{bundle.ViewCarrentalDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCarrentalEditLink}"/>
+                <br />
+                <h:commandLink action="#{carrentalController.prepareCreate}" value="#{bundle.ViewCarrentalCreateLink}" />
+                <br />
+                <h:commandLink action="#{carrentalController.prepareList}" value="#{bundle.ViewCarrentalShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCarrentalIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

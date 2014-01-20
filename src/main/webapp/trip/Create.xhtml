@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTripTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTripLabel_tripid}" for="tripid" />
+                    <h:inputText id="tripid" value="#{tripController.selected.tripid}" title="#{bundle.CreateTripTitle_tripid}" required="true" requiredMessage="#{bundle.CreateTripRequiredMessage_tripid}"/>
+                    <h:outputLabel value="#{bundle.CreateTripLabel_depdate}" for="depdate" />
+                    <h:inputText id="depdate" value="#{tripController.selected.depdate}" title="#{bundle.CreateTripTitle_depdate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTripLabel_depcity}" for="depcity" />
+                    <h:inputText id="depcity" value="#{tripController.selected.depcity}" title="#{bundle.CreateTripTitle_depcity}" />
+                    <h:outputLabel value="#{bundle.CreateTripLabel_destcity}" for="destcity" />
+                    <h:inputText id="destcity" value="#{tripController.selected.destcity}" title="#{bundle.CreateTripTitle_destcity}" />
+                    <h:outputLabel value="#{bundle.CreateTripLabel_lastupdated}" for="lastupdated" />
+                    <h:inputText id="lastupdated" value="#{tripController.selected.lastupdated}" title="#{bundle.CreateTripTitle_lastupdated}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTripLabel_triptypeid}" for="triptypeid" />
+                    <h:selectOneMenu id="triptypeid" value="#{tripController.selected.triptypeid}" title="#{bundle.CreateTripTitle_triptypeid}" required="true" requiredMessage="#{bundle.CreateTripRequiredMessage_triptypeid}">
+                        <f:selectItems value="#{triptypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTripLabel_personid}" for="personid" />
+                    <h:selectOneMenu id="personid" value="#{tripController.selected.personid}" title="#{bundle.CreateTripTitle_personid}" required="true" requiredMessage="#{bundle.CreateTripRequiredMessage_personid}">
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tripController.create}" value="#{bundle.CreateTripSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tripController.prepareList}" value="#{bundle.CreateTripShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTripIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

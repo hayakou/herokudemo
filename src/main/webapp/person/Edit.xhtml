@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPersonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPersonLabel_personid}" for="personid" />
+                    <h:inputText id="personid" value="#{personController.selected.personid}" title="#{bundle.EditPersonTitle_personid}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_personid}"/>
+                    <h:outputLabel value="#{bundle.EditPersonLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{personController.selected.name}" title="#{bundle.EditPersonTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_jobtitle}" for="jobtitle" />
+                    <h:inputText id="jobtitle" value="#{personController.selected.jobtitle}" title="#{bundle.EditPersonTitle_jobtitle}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_frequentflyer}" for="frequentflyer" />
+                    <h:inputText id="frequentflyer" value="#{personController.selected.frequentflyer}" title="#{bundle.EditPersonTitle_frequentflyer}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_lastupdated}" for="lastupdated" />
+                    <h:inputText id="lastupdated" value="#{personController.selected.lastupdated}" title="#{bundle.EditPersonTitle_lastupdated}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{personController.update}" value="#{bundle.EditPersonSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPersonViewLink}"/>
+                <br />
+                <h:commandLink action="#{personController.prepareList}" value="#{bundle.EditPersonShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPersonIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
